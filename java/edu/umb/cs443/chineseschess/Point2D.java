@@ -1,4 +1,4 @@
-package edu.umb.cs443.chinese_chess;
+package edu.umb.cs443.chineseschess;
 
 public class Point2D
 {
