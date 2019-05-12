@@ -8,6 +8,18 @@
     android:background="@drawable/board"
     tools:context="edu.umb.cs443.chineseschess.MainActivity">
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/debugger"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="" />
+
     <GridView
         android:id="@+id/gridView"
         android:layout_width="match_parent"
@@ -20,5 +32,20 @@
         android:gravity="center"
         android:scaleType="fitXY"
         android:numColumns="9"></GridView>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="unDo"
+            android:text="Undo" />
+
+        <Button
+            android:id="@+id/New"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="init"
+            android:text="Play Again!" />
+    </LinearLayout>>
 
 </RelativeLayout>
