@@ -1,4 +1,4 @@
-package edu.umb.cs443.chinese_chess.piece;
+package edu.umb.cs443.chineseschess.piece;
 
 import java.util.LinkedList;
 
