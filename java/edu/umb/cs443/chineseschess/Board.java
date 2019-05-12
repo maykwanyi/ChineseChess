@@ -1,5 +1,4 @@
-package edu.umb.cs443.chinese_chess;
-
+package edu.umb.cs443.chineseschess;
 
 import edu.umb.cs443.chinese_chess.piece.Piece;
 
