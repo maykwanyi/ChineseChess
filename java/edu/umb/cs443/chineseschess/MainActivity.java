@@ -1,5 +1,6 @@
 package edu.umb.cs443.chineseschess;
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -8,7 +9,9 @@ import android.graphics.Paint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,7 +21,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ImageView;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
     ImageView gridView;
     boolean selected = false;
     int selectedIndex = -1;
@@ -26,9 +29,7 @@ public class MainActivity extends Activity {
     boolean twoPlayers = true;
     boolean redTrun;
 
-    ImageAdapter adapter;
-
-    private String[]number;
+    private String[] number;
     //private ImageView[] numbers = new ImageView[9*10];
 
     Board board;
@@ -40,38 +41,38 @@ public class MainActivity extends Activity {
 
     TextView debugger;
 
-    public Integer[] numbers = {
-            R.drawable.rook_red, R.drawable.horse_red,
-            R.drawable.elephant_red, R.drawable.advisor_red,
-            R.drawable.general_red,
-            R.drawable.advisor_red, R.drawable.elephant_red,
-            R.drawable.horse_red, R.drawable.rook_red,
+    Integer[] numbers = {
+            R.drawable.rook_black, R.drawable.horse_black,
+            R.drawable.elephant_black, R.drawable.advisor_black,
+            R.drawable.general_black,
+            R.drawable.advisor_black, R.drawable.elephant_black,
+            R.drawable.horse_black, R.drawable.rook_black,
 
             0, 0, 0, 0, 0, 0, 0, 0, 0,
 
-            0, R.drawable.cannon_red, 0, 0, 0, 0, 0, R.drawable.cannon_red, 0,
-
-            R.drawable.solider_red, 0, R.drawable.solider_red, 0, R.drawable.solider_red, 0,
-            R.drawable.solider_red, 0, R.drawable.solider_red,
-
-            0, 0, 0, 0, 0, 0, 0, 0, 0,
-
-            0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, R.drawable.cannon_black, 0, 0, 0, 0, 0, R.drawable.cannon_black, 0,
 
             R.drawable.solider_black, 0, R.drawable.solider_black, 0, R.drawable.solider_black, 0,
             R.drawable.solider_black, 0, R.drawable.solider_black,
 
-            0, R.drawable.cannon_black, 0, 0, 0, 0, 0, R.drawable.cannon_black, null,
+            0, 0, 0, 0, 0, 0, 0, 0, 0,
 
             0, 0, 0, 0, 0, 0, 0, 0, 0,
 
-            R.drawable.rook_black, R.drawable.horse_black,
-            R.drawable.elephant_black, R.drawable.advisor_black, R.drawable.general_black,
-            R.drawable.advisor_black, R.drawable.elephant_black,
-            R.drawable.horse_black, R.drawable.rook_black,
+            R.drawable.solider_red, 0, R.drawable.solider_red, 0, R.drawable.solider_red, 0,
+            R.drawable.solider_red, 0, R.drawable.solider_red,
+
+            0, R.drawable.cannon_red, 0, 0, 0, 0, 0, R.drawable.cannon_red, 0,
+
+            0, 0, 0, 0, 0, 0, 0, 0, 0,
+
+            R.drawable.rook_red, R.drawable.horse_red,
+            R.drawable.elephant_red, R.drawable.advisor_red, R.drawable.general_red,
+            R.drawable.advisor_red, R.drawable.elephant_red,
+            R.drawable.horse_red, R.drawable.rook_red,
     };
 
-    String[] nameArray = {};
+    //LinearLayout listView;
     ListView listView;
 
     @Override
@@ -85,34 +86,37 @@ public class MainActivity extends Activity {
 
         debugger = (TextView) findViewById(R.id.debugger);
 
-        listAdapter setup = new listAdapter(this, nameArray, numbers);
+        listAdapter setup = new listAdapter(this, numbers);
         listView = (ListView) findViewById(R.id.listviewID);
+        listView.setAdapter(setup);
+        //LayoutInflater inflater = LayoutInflater.from(this);
 
-        //gridView = (ListView) findViewById(R.id.listview);
-
+        /*
+        int a;
+        for (a = 0; a < numbers.length; a++){
+            View view = inflater.inflate(R.layout.listview, listView, false);
+            listView.addView(view);
+        }
+        */
         redTrun = true;
 
         updateBoard();
 
-        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-        //        R.layout.selected_piece, numbers);
-
         //       ArrayAdapter<ImageView> adapter = new ArrayAdapter<ImageView>(this,
         //               R.layout.selected_piece, numbers);
 
-        ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(this,
-                R.layout.selected_piece, numbers);
+        //ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(this,
+        //        R.layout.selected_piece, numbers);
 
-        listView.setAdapter(setup);
+        //listView.setAdapter(new ArrayAdapter<Integer>(this, R.layout.selected_piece, numbers));
         //setup.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id){
-
                 t2=new MoveTask();
                 t2.execute(new Integer(position));
-
                 if (!selected) {
                     selectPiece(position);
                     return;
@@ -303,5 +307,15 @@ public class MainActivity extends Activity {
         canvas.drawPaint(paint);
         //paint.setColor(Color.RED);
     }
+*/
+/*
+public void rookBlack(View v){
+    ImageView img=(ImageView) findViewById(R.id.rook_black);
+    img.setTranslationY(0f);
+
+    ObjectAnimator anim = ObjectAnimator.ofFloat(img, "translationX", 0, 300);
+    anim.setDuration(1000);
+    anim.start();
+}
 */
 }
